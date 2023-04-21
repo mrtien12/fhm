@@ -3,7 +3,6 @@ import pandas as pd
 import time
 import fhm
 st.markdown("# Customer app")
-st.set_page_config(page_title='quanproject')
 st.sidebar.markdown(
     """ Program to solve FHM problem*
 """
