@@ -2,11 +2,7 @@ import streamlit as st
 import pandas as pd
 import time
 import fhm
-st.markdown("# Customer app")
-st.sidebar.markdown(
-    """ Program to solve FHM problem*
-"""
-)
+import altair as alt
 
 
 data_customer = st.file_uploader("Customer Data Input",type = ['csv'])
@@ -48,3 +44,11 @@ k = fhm1.run_FHM()
 end = time.perf_counter()
 st.write("Execution time :" + str(end-start))
 st.write(k)
+output_df = pd.DataFrame(k, columns=['itemset', 'support'])
+
+# Plotting the barplot using Altair
+chart = alt.Chart(output_df).mark_bar().encode(
+    x='itemset',
+    y='support'
+).properties(width=700)
+st.altair_chart(chart, use_container_width=True)
